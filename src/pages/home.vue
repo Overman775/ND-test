@@ -8,6 +8,16 @@
       <f7-nav-title sliding>ND-test</f7-nav-title>
     </f7-navbar>
     <!-- Page content-->
-
+    <images-button>Выбрать изображение</images-button>
   </f7-page>
 </template>
+
+<script>
+import ImagesButton from "../components/images-button.vue";
+export default {
+  name: 'HomePage',
+  components:{
+    ImagesButton
+  }
+}
+</script>
