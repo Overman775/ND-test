@@ -5,6 +5,9 @@ const store = {
   getters: {
     IMAGES_LIST: state => {
       return state.images;
+    },
+    IMAGE: (state) => (id) => {
+        return state.images[id]
     }
   },
   mutations: {

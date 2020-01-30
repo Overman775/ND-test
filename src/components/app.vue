@@ -28,7 +28,10 @@ export default {
         name: "ND-test", // App name
         theme: "auto", // Automatic theme detection
         // App routes
-        routes: routes
+        routes: routes,
+        view:{
+          masterDetailBreakpoint: 800,
+        }
       },
     };
   },
