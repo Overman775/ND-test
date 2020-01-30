@@ -9,6 +9,16 @@
     </f7-navbar>
     <!-- Page content-->
     <images-button>Выбрать изображение</images-button>
+    <f7-list media-list>
+      <f7-list-item
+        v-for="(item, index) in $store.getters.IMAGES_LIST"
+        :key="'item'+index"
+        :title="item.name"
+        :link="'/image/'+index"
+        :subtitle="item.type">
+        <img slot="media" :src="item.thumbnail" width="120" />
+      </f7-list-item>
+    </f7-list>
   </f7-page>
 </template>
 
