@@ -38,19 +38,26 @@ export default {
       const files = e.target.files;
       if (!files.length) return;
       //Clean image state
-      this.$emit('nextInteration');
-      this.$store.commit("RESET_IMAGES_LIST");
+      this.$emit("nextInteration");
+      this.resetFiles();
+      const urlCreator = window.URL || window.webkitURL;
+
       for (let i = 0; i < files.length; i += 1) {
         const file = files[i];
 
         const reader = new FileReader();
         reader.onload = () => {
+          const blob_url = urlCreator.createObjectURL(
+            new Blob([reader.result], {
+              type: file.type
+            })
+          );
           const file_obj = {
             name: file.name,
             type: file.type,
-            data: reader.result
+            url: blob_url
           };
-          this.resizeImage({data: reader.result, type: file.type}, 120, 120).then(data => {
+          this.resizeImage(blob_url, 120, 120).then(data => {
             file_obj.thumbnail = data;
             this.$store.commit("ADD_IMAGE", file_obj);
           });
@@ -60,6 +67,14 @@ export default {
         };
         reader.readAsArrayBuffer(file);
       }
+    },
+    resetFiles() {
+      const urlCreator = window.URL || window.webkitURL;
+      //delete old blob images
+      this.$store.getters.IMAGES_LIST.forEach(e => {
+        urlCreator.revokeObjectURL(e.url);
+      });
+      this.$store.commit("RESET_IMAGES_LIST");
     }
   }
 };
