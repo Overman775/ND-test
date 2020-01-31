@@ -10,7 +10,7 @@ var routes = [
     master: true,
     detailRoutes: [
       {
-        path: '/image/:id/',
+        path: '/image/:id/:step/',
         component: ImagePage
       }
     ]

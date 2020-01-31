@@ -38,6 +38,7 @@ export default {
       const files = e.target.files;
       if (!files.length) return;
       //Clean image state
+      this.$emit('nextInteration');
       this.$store.commit("RESET_IMAGES_LIST");
       for (let i = 0; i < files.length; i += 1) {
         const file = files[i];

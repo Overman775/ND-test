@@ -8,15 +8,14 @@
       <f7-nav-title sliding>ND-test</f7-nav-title>
     </f7-navbar>
     <!-- Page content-->
-    <images-button>Выбрать изображение</images-button>
+    <images-button @nextInteration="nextInteration">Выбрать изображение</images-button>
     <f7-list media-list>
       <f7-list-item
         v-for="(item, index) in $store.getters.IMAGES_LIST"
         :key="'item'+index"
         :title="item.name"
-        :link="'/image/'+index+'/'"
+        :link="'/image/'+index+'/'+file_interation+'/'"
         reload-detail
-        ignore-cache
         :subtitle="item.type">
         <img slot="media" :src="item.thumbnail" width="120" />
       </f7-list-item>
@@ -30,6 +29,16 @@ export default {
   name: 'HomePage',
   components:{
     ImagesButton
+  },
+  methods:{
+    nextInteration(){
+      this.file_interation ++;
+    }
+  },
+  data(){
+    return{
+      file_interation: 0,
+    }
   }
 }
 </script>
