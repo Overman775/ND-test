@@ -53,7 +53,7 @@ export default {
             })
           );
           const file_obj = {
-            name: file.name,
+            caption: file.name,
             type: file.type,
             url: blob_url
           };

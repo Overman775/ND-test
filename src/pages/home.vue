@@ -13,13 +13,17 @@
       <f7-list-item
         v-for="(item, index) in $store.getters.IMAGES_LIST"
         :key="'item'+index"
-        :title="item.name"
-        :link="'/image/'+index+'/'+file_interation+'/'"
-        reload-detail
+        :title="item.caption"
+        @click="openImagePrewiew(index)"
         :subtitle="item.type">
         <img slot="media" :src="item.thumbnail" width="120" />
       </f7-list-item>
     </f7-list>
+      <f7-photo-browser
+        :photos="$store.getters.IMAGES_LIST"
+        type="page"
+        ref="popupImagePrewiew"
+      ></f7-photo-browser>
   </f7-page>
 </template>
 
@@ -33,6 +37,9 @@ export default {
   methods:{
     nextInteration(){
       this.file_interation ++;
+    },
+    openImagePrewiew(index){
+      this.$refs.popupImagePrewiew.open();
     }
   },
   data(){
