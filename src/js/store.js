@@ -13,7 +13,8 @@ const store = {
   state: {
     images: [],
     settings: {
-      darkMode: false
+      darkMode: false,
+      themeColor: '#007aff',
     }
   },
   getters: {
