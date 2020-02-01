@@ -35,7 +35,7 @@ const store = {
       state.images.push(payload);
     },
     SET_SETTINGS: (state, payload) => {
-      state.settings[payload.prop] = payload["val"];
+      state.settings[payload.prop] = payload.val;
     }
   },
   actions: {}
