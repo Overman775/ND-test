@@ -15,37 +15,45 @@
         :key="'item'+index"
         :title="item.caption"
         @click="openImagePrewiew(index)"
-        :subtitle="item.type">
+        :subtitle="item.type"
+      >
         <img slot="media" :src="item.thumbnail" width="120" />
       </f7-list-item>
     </f7-list>
-      <f7-photo-browser
-        :photos="$store.getters.IMAGES_LIST"
-        type="page"
-        ref="popupImagePrewiew"
-      ></f7-photo-browser>
+    <f7-photo-browser
+      :photos="$store.getters.IMAGES_LIST"
+      type="page"
+      ref="popupImagePrewiew"
+      :theme="theme"
+    ></f7-photo-browser>
   </f7-page>
 </template>
 
 <script>
 import ImagesButton from "../components/images-button.vue";
 export default {
-  name: 'HomePage',
-  components:{
+  name: "HomePage",
+  components: {
     ImagesButton
   },
-  methods:{
-    nextInteration(){
-      this.file_interation ++;
+  methods: {
+    nextInteration() {
+      this.file_interation++;
     },
-    openImagePrewiew(index){
+    openImagePrewiew(index) {
       this.$refs.popupImagePrewiew.open();
     }
   },
-  data(){
-    return{
-      file_interation: 0,
+  computed: {
+    theme() {
+      if (this.$store.state.settings.darkMode) return "dark";
+      else return "light";
     }
+  },
+  data() {
+    return {
+      file_interation: 0
+    };
   }
-}
+};
 </script>

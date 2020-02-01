@@ -1,13 +1,14 @@
 <template>
-  <f7-app :params="f7params">
+  <f7-app :params="f7params" :theme-dark="$store.state.settings.darkMode">
     <!-- Left panel with cover effect when hidden -->
-    <f7-panel left cover theme-dark :visible-breakpoint="960">
+    <f7-panel left cover :visible-breakpoint="960">
       <f7-view>
         <f7-page>
-          <f7-navbar title="Left Panel"></f7-navbar>
-          <f7-block-title>Left View Navigation</f7-block-title>
+          <f7-navbar title="Настройки"></f7-navbar>
           <f7-list>
-            <f7-list-item link="/left-page-1/" title="Left Page 1"></f7-list-item>
+            <f7-list-item title="Темная тема">
+              <f7-toggle slot="after" @toggle:change="changeTheme" :checked="$store.state.settings.darkMode"></f7-toggle>
+            </f7-list-item>
           </f7-list>
         </f7-page>
       </f7-view>
@@ -29,13 +30,18 @@ export default {
         theme: "auto", // Automatic theme detection
         // App routes
         routes: routes,
-        view:{
-          masterDetailBreakpoint: 800,
+        'theme-dark': true,
+        view: {
+          masterDetailBreakpoint: 800
         }
       },
     };
   },
   methods: {
+    changeTheme(check) {
+      console.log("TCL: changeTheme -> e", check)
+      this.$store.commit('SET_SETTINGS', {prop: 'darkMode', val: check})      
+    }
   },
   mounted() {
     this.$f7ready(f7 => {
