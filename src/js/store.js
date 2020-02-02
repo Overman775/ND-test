@@ -15,6 +15,7 @@ const store = {
     settings: {
       darkMode: false,
       themeColor: '#007aff',
+      thumbnailSize: 'contain',
     }
   },
   getters: {

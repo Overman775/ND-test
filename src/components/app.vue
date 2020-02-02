@@ -15,15 +15,24 @@
             </f7-list-item>
             <f7-list-input
               type="colorpicker"
-              label="Тема"
-              inline-label
+              label="Цвет темы"
               placeholder="e.g. #ff0000"
               readonly
               :value="{hex: $store.state.settings.themeColor}"
               :color-picker-params="{targetEl: '#nd-color-theme-picker'}"
               @colorpicker:change="value => setColorTheme(value.hex)"
             >
-              <div slot="inner-end" id="nd-color-theme-picker"></div>
+              <div slot="media" id="nd-color-theme-picker"></div>
+            </f7-list-input>
+            <f7-list-input
+              label="Вписывание миниатюр"
+              type="select"
+              :value="$store.state.settings.thumbnailSize"
+              @change="setThumbnailSize($event.target.value)"
+            >
+              <option value="contain">Вписывание</option>
+              <option value="cover-vertical">По вертикали</option>
+              <option value="cover-horizontal">По горизонтали</option>
             </f7-list-input>
           </f7-list>
         </f7-page>
@@ -57,8 +66,10 @@ export default {
   mixins: [ColorUtils],
   methods: {
     changeTheme(check) {
-      console.log("TCL: changeTheme -> e", check);
       this.$store.commit("SET_SETTINGS", { prop: "darkMode", val: check });
+    },
+    setThumbnailSize(value){
+      this.$store.commit("SET_SETTINGS", { prop: "thumbnailSize", val: value });
     },
     setColorTheme(color) {
       if (this.$store.state.settings.themeColor === color) return;
@@ -96,7 +107,5 @@ export default {
   height: 28px;
   border-radius: 4px;
   background: var(--f7-theme-color);
-  flex-shrink: 0;
-  margin-left: 16px;
 }
 </style>

@@ -17,7 +17,8 @@
         @click="openImagePrewiew(index)"
         :subtitle="item.type"
       >
-        <img slot="media" :src="item.thumbnail" width="120" />
+        <div slot="media" :style="{backgroundImage: 'url('+item.thumbnail+')'}" :class="['nd-thumbnail-item', $store.state.settings.thumbnailSize]">          
+        </div>
       </f7-list-item>
     </f7-list>
     <f7-photo-browser
@@ -57,3 +58,23 @@ export default {
   }
 };
 </script>
+
+<style lang="sass">
+  .nd-thumbnail-item{
+    width: 120px;
+    height: 120px;
+    display: block;
+    border: 1px solid var(--f7-theme-color);
+    background-position: center center;
+    background-repeat: no-repeat;
+    &.conatain{
+      background-size: conatain;
+    }
+    &.cover-vertical{
+      background-size: auto 100% ;
+    }
+    &.cover-horizontal{
+      background-size: 100% auto;
+    } 
+  }
+</style>
