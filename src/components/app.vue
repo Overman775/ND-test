@@ -108,4 +108,7 @@ export default {
   border-radius: 4px;
   background: var(--f7-theme-color);
 }
+.theme-dark option{
+  background-color: #121212;
+}
 </style>
