@@ -11,6 +11,7 @@
       </f7-nav-title>
     </f7-navbar>
     <!-- Page content-->
+    <img src="static/robo.svg" v-if="$store.getters.IMAGES_LIST.length === 0">
     <images-button @nextInteration="nextInteration">Выбрать изображение</images-button>
     <f7-list media-list>
       <f7-list-item
